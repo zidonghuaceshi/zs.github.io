@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>接口测试报告</title>
+    <meta name="generator" content="BSTestRunner 0.8.4"/>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    
+<style type="text/css" media="screen">
+
+/* -- css div popup ------------------------------------------------------------------------ */
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #99CCFF;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 10pt;
+    width: 1200px;
+}
+
+/* -- report ------------------------------------------------------------------------ */
+
+#show_detail_line .label {
+    font-size: 85%;
+    cursor: pointer;
+}
+
+#show_detail_line {
+    margin: 2em auto 1em auto;
+}
+
+#total_row  { font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+</style>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class="container">
+    <div class='heading'>
+<h1>接口测试报告</h1>
+<p><strong>Start Time:</strong> 2022-01-19 15:50:14</p>
+<p><strong>Duration:</strong> 0:00:49.227351</p>
+<p><strong>Status:</strong> <span class="text text-success">Pass <strong>51</strong></span></p>
+
+<p class='description'>测试结果</p>
+</div>
+
+
+    
+<p id='show_detail_line'>
+<span class="label label-primary" onclick="showCase(0)">Summary</span>
+<span class="label label-danger" onclick="showCase(1)">Failed</span>
+<span class="label label-default" onclick="showCase(2)">All</span>
+</p>
+<table id='result_table' class="table">
+    <thead>
+        <tr id='header_row'>
+            <th>Test Group/Test case</td>
+            <th>Count</td>
+            <th>Pass</td>
+            <th>Fail</td>
+            <th>Error</td>
+            <th>View</td>
+        </tr>
+    </thead>
+    <tbody>
+        
+<tr class='text text-success'>
+    <td>zhuliucheng_cases.qianzaiyonghu.QianZaiKeHu</td>
+    <td>12</td>
+    <td>12</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a class="btn btn-xs btn-primary"href="javascript:showClassDetail('c1',12)">Detail</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_01_qzyhxz: 潜在用户批量新增</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: 潜在用户批量新增--01
+https://apigw-uat.cloudcc.com/tfsuat/api/objectInfo/save
+{"objectApi":"Lead","data":"[{\"name\":\"新建潜在+001\",\"name00\":\"\",\"name01\":\"\",\"assignstate\":\"\",\"email\":\"\",\"qzkhly\":\"\",\"qzkhzt\":\"\",\"company\":\"\",\"campaign\":\"\",\"address\":\"\",\"dianhua\":\"\",\"city_wtd\":\"\",\"province_wtd\":\"\",\"hangye\":\"\",\"sex_wtd\":\"\",\"zhiwu\":\"\",\"phone\":\"15075756711\",\"leadcounty\":\"\",\"recordtype\":\"202133B4CA496CEkp4am\"},{\"name\":\"新建潜在+002\",\"name00\":\"\",\"name01\":\"\",\"assignstate\":\"\",\"email\":\"\",\"qzkhly\":\"\",\"qzkhzt\":\"\",\"company\":\"\",\"campaign\":\"\",\"address\":\"\",\"dianhua\":\"\",\"city_wtd\":\"\",\"province_wtd\":\"\",\"hangye\":\"\",\"sex_wtd\":\"\",\"zhiwu\":\"\",\"phone\":\"15075756711\",\"leadcounty\":\"\",\"recordtype\":\"202133B4CA496CEkp4am\"}]","marketsea":"false"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': [{'isSaveSuccess': 'true', 'name': '新建潜在+001', 'id': '00420220B2AE6642KIBJ'}, {'isSaveSuccess': 'true', 'name': '新建潜在+002', 'id': '00420221B733626MvV9B'}], 'requestId': '94ae108a-da79-4188-98eb-60a082aac11d', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+['00420220B2AE6642KIBJ', '00420221B733626MvV9B']
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_02_ggsyr: 更改所有人</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        pass</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.2: 更改所有人--02
+https://apigw-uat.cloudcc.com/tfstestpdc/api/transfer/updateChangeOwner
+{"isSendMail":"false","recordId":"00420224AA849BEvUDhB","newOwnerId":"0052022DEBFBBD3EsOKS","relatedIds":"","recordName":"","isActivity":true}
+{"isSendMail":"false","recordId":"00420220B2AE6642KIBJ","newOwnerId":"0052022DEBFBBD3EsOKS","relatedIds":"","recordName":"","isActivity":true}
+00420220B2AE6642KIBJ
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': None, 'requestId': '1543b27d-3ab5-48cd-aff2-3ddaf070d6d2', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_03_plzy: 批量转移</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        pass</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.3: 批量转移--03
+{"isSendMail":"false","recordIds":"00420220B2AE6642KIBJ,00420221B733626MvV9B","newOwnerId":"0052021FCFE00BEPSJGs","relatedIds":""}
+        
+['00420220B2AE6642KIBJ', '00420221B733626MvV9B']
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_04_qzkhztbh: 潜在客户状态变化</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.4')" >
+        pass</a>
+
+    <div id='div_pt1.4' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.4: 状态变化--04
+{"objectApi":"Lead","data":"[{\"name\":\"潜在客户kka\",\"chengwei\":\"先生\",\"qzkhly\":\"其他\",\"qzkhzt\":\"已转换\",\"campaign\":\"\",\"marketsea\":\"2021A1A3C5D71A2QyVrX\",\"isconvert\":\"true\",\"xxlba\":\"A\",\"ownerid\":\"00520211668D91EOZD3f\",\"zys\":\"\",\"assignstate\":\"已转换\",\"email\":\"\",\"dianhua\":\"\",\"phone\":\"\",\"fax\":\"\",\"company\":\"\",\"hangye\":\"\",\"zhiwu\":\"\",\"fenji\":\"\",\"nsr\":\"\",\"recordtype\":\"2021CADA0E77E91rvTap\",\"address\":\"\",\"province_wtd\":\"\",\"sex_wtd\":\"\",\"khxxdz00\":\"\",\"khxxdz01\":\"\",\"khxxdz02\":\"\",\"khxxdz04\":\"\",\"khxxdz05\":\"\",\"wangzhi\":\"\",\"beizhu\":\"\",\"ccc\":\"\",\"csriq\":\"\",\"xsdzy\":\"\",\"wbzdcs\":\"\",\"qkdz00\":\"\",\"qkdz01\":\"\",\"qkdz02\":\"\",\"qkdz04\":\"\",\"qkdz05\":\"\",\"csqj\":\"\",\"qjxxszcs\":\"\",\"test00166\":\"\",\"qjdtcs\":\"中国\",\"xxlbb\":\"\",\"xxlbc\":\"\",\"createbyid\":\"\",\"lastmodifybyid\":\"\",\"case_assiGNment\":\"false\",\"id\":\"00420220B2AE6642KIBJ\"}]","marketsea":"false"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': [{'isSaveSuccess': 'true', 'name': None, 'id': '00420220B2AE6642KIBJ'}], 'requestId': '0c7d3e15-7064-4494-a04b-002c9c02939d', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_05_sczckh: 转换且正常生成客户</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
+        pass</a>
+
+    <div id='div_pt1.5' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.5: 转换且正常生成客户--05
+{"leadId":"00420220B2AE6642KIBJ","ownerId":"0052018E8CB73D4TrAwb","accountId":"","companyName":"转换+001","oppName":"","newopp":"2","leadType":"","subject":"","endDate":"","remark":"","taskState":"","taskLevel":"","conversmail":false,"noteDate":"2022-01-13 11:12:51","type":"1","taskdmail":"","isnote":true,"oppId":"","contactType":"1","contactId":"","contactNameF":"","contactNameL":"测试联系人","taskType":"2","marketseaId":"202146BAFB96DDA7V4aZ","accountRecordType":"20211C6A5918A49UlQOo","contactRecordType":"202134A7CFB2EA1zuJ5k","opportunityRecordType":""}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': {'contactId': '0032022D5C48D466tUhI', 'id': '0012022632283E7sEj9V'}, 'requestId': '94f310c4-f661-4016-bf78-43cbe77ca7eb', 'returnCode': '1', 'returnInfo': '', 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.6' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_06_qzyhbj: 潜在用户编辑</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.6')" >
+        pass</a>
+
+    <div id='div_pt1.6' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.6: 潜在用户编辑--06
+&lt;class 'str'&gt;
+['00420220B2AE6642KIBJ', '00420221B733626MvV9B']
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.7' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_07_qzyhplcz: 潜在批量查找</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.7')" >
+        pass</a>
+
+    <div id='div_pt1.7' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.7: 潜在批量查找--07
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+搜索到了内容0条
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.8' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_08_qzyhplsc: 潜在批量删除</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.8')" >
+        pass</a>
+
+    <div id='div_pt1.8' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.8: 潜在批量删除--08
+['00420220B2AE6642KIBJ', '00420221B733626MvV9B']
+{"ids":"00420220B2AE6642KIBJ,00420221B733626MvV9B","prefix":"004"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.9' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_09_lxrplxz: 联系人新增</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.9')" >
+        pass</a>
+
+    <div id='div_pt1.9' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.9: 联系人新增--08
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+{'data': [{'isSaveSuccess': 'true', 'name': '新建联系人001', 'id': '0032022D12402AFKunDH'}], 'requestId': '9f911a2b-426b-4cad-8b3b-f796cadac975', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+关键字检查通过
+['0032022D12402AFKunDH']
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.10' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_10_lxrplxg: 联系人修改</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.10')" >
+        pass</a>
+
+    <div id='div_pt1.10' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.10: 联系人批量修改--10
+{"objectApi":"Contact","data":"[{\"name\":\"联系人编辑+001\",\"khmc\":\"0012021E23E980Bba7kW\",\"chengwei\":\"先生\",\"csrq\":\"\",\"zhiwu\":\"11\",\"zsss\":\"\",\"bumen\":\"\",\"acz\":\"\",\"zp\":\"\",\"recordtype\":\"2021031CED45B16NzvfC\",\"ywlxr\":\"\",\"ownerid\":\"0052017BE8702F1PIi4j\",\"wj\":\"\",\"appsearch\":\"\",\"zhxgczdx\":\"\",\"xxa\":\"\",\"sz\":\"\",\"bzzdy\":\"\",\"bfb\":\"\",\"sj\":\"\",\"zixhczdx\":\"\",\"fwbzd\":\"\",\"czyh\":\"\",\"ywjhcz\":\"\",\"csyhtx\":\"\",\"dianhua\":\"\",\"zhuli\":\"\",\"shouji\":\"\",\"zldh\":\"\",\"email\":\"cloud@cc.com\",\"jtdh\":\"\",\"fax\":\"\",\"qtdh\":\"\",\"wzd\":\"false\",\"lxph\":\"\",\"hierarchies\":\"\",\"attitude\":\"\",\"contactrole\":\"\",\"maturity\":\"\",\"buystyle\":\"\",\"wx\":\"\",\"qq\":\"\",\"bgdz\":\"\",\"jtdz\":\"\",\"yjdz\":\"\",\"qtdz\":\"\",\"xqah\":\"\",\"beizhu\":\"\",\"createbyid\":\"\",\"lastmodifybyid\":\"\",\"url_name\":\"联系人0023\",\"id\":\"0032022D12402AFKunDH\"}]","marketsea":"false"}
+0032022D12402AFKunDH
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+{'data': [{'isSaveSuccess': 'true', 'name': None, 'id': '0032022D12402AFKunDH'}], 'requestId': 'd26bdf50-5999-4708-8cc7-22e6ba40bbce', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.11' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_11_lxrplss: 联系人-搜索</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.11')" >
+        pass</a>
+
+    <div id='div_pt1.11' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.11: 联系人-批量搜索--10
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+{'data': None, 'requestId': 'a3a35f74-21af-476e-9e82-1a3118f9cdfe', 'returnCode': '10001', 'returnInfo': '系统异常，请联系系统管理员获取帮助', 'result': False, 'stackTrace': 'java.lang.NullPointerException\n\tat com.cloudcc.remoteservice.restapi.view.controller.ViewListController.getViewListAjax(ViewListController.java:114)\n\tat sun.reflect.GeneratedMethodAccessor893.invoke(Unknown Source)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)\n\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:878)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:792)\n\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)\n\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)\n\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)\n\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)\n\tat org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)\n\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:660)\n\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)\n\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:741)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat com.g3cloud.platform.document.action.NTKODocumentFilter.doFilter(NTKODocumentFilter.java:108)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat com.g3cloud.platform.ccdocument.action.NTKOFileUploadFilter.doFilter(NTKOFileUploadFilter.java:71)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat com.g3cloud.platform.ccsqlinjection.CCSQLInjectionFilter.doFilter(CCSQLInjectionFilter.java:76)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat com.g3cloud.platform.partner.action.PartnerUrlRewriteFilter.doFilter(PartnerUrlRewriteFilter.java:78)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat com.cloudcc.remoteservice.restapi.filter.RestWebServiceInterceptor.doFilter(RestWebServiceInterceptor.java:122)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)\n\tat org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\n\tat org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\n\tat org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\n\tat org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\n\tat org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\n\tat org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\n\tat org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)\n\tat org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\n\tat org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\n\tat org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\n\tat org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)\n\tat org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)\n\tat org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)\n\tat org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat org.springframework.boot.web.servlet.support.ErrorPageFilter.doFilter(ErrorPageFilter.java:126)\n\tat org.springframework.boot.web.servlet.support.ErrorPageFilter.access$000(ErrorPageFilter.java:64)\n\tat org.springframework.boot.web.servlet.support.ErrorPageFilter$1.doFilterInternal(ErrorPageFilter.java:101)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)\n\tat org.springframework.boot.web.servlet.support.ErrorPageFilter.doFilter(ErrorPageFilter.java:119)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:543)\n\tat com.s.tomcat.redissessions.RedisSessionHandlerValve.invoke(RedisSessionHandlerValve.java:24)\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)\n\tat org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:688)\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:609)\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:818)\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1623)\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)\n\tat java.lang.Thread.run(Thread.java:748)\n', 'errorSQL': None}
+搜索到了内容False条
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.12' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_12_lxrplsc: 联系人-删除</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.12')" >
+        pass</a>
+
+    <div id='div_pt1.12' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.12: 联系人-批量删除--11
+['0032022D12402AFKunDH']
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='text text-success'>
+    <td>zhuliucheng_cases.yewujihui.YeWuJiHui</td>
+    <td>11</td>
+    <td>11</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a class="btn btn-xs btn-primary"href="javascript:showClassDetail('c2',11)">Detail</a></td>
+</tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_01_ywjhzj: 商机-业务机会增加-批量</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.1')" >
+        pass</a>
+
+    <div id='div_pt2.1' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.1: 商机-业务机会增加--01
+https://apigw-uat.cloudcc.com/tfstestpdc/api/objectInfo/save
+{"objectApi":"Opportunity","data":"[{\"name\":\"业务机会增加+1\",\"ywjhzxzd\":\"0012021F25EB3CEALJ1d\",\"recordtype\":\"2021EC0F031BF77fOjnX\"},{\"name\":\"业务机会增加+2\",\"ywjhzxzd\":\"0012021F25EB3CEALJ1d\",\"recordtype\":\"2021EC0F031BF77fOjnX\"}]","marketsea":"false"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+{'data': [{'isSaveSuccess': 'true', 'name': '业务机会增加+1', 'id': '0022022131FB171KEmsI'}, {'isSaveSuccess': 'true', 'name': '业务机会增加+2', 'id': '002202258E16758Lj8Eg'}], 'requestId': '580b8ad2-e311-46c6-9819-916d2e0039c1', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+['0022022131FB171KEmsI', '002202258E16758Lj8Eg']
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.2' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_02_yzgz: 商机-业务机会验证规则</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.2')" >
+        pass</a>
+
+    <div id='div_pt2.2' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.2: 商机-业务机会验证规则--02
+https://apigw-uat.cloudcc.com/tfstestpdc/api/objectInfo/save
+{"objectApi":"Opportunity","data":"[{\"name\":\"A空B不等于满足\",\"ownerid\":\"00520211668D91EOZD3f\",\"lbsaddress\":\"\",\"zhzqzkh\":\"\",\"jingweidula\":\"\",\"jingweiduco\":\"\",\"knx\":\"\",\"khmc\":\"\",\"forecasttype\":\"忽略\",\"jieduan\":\"\",\"jine\":\"1000.00\",\"jsrq\":\"\",\"xxzk\":\"\",\"xyb\":\"测试\",\"xmys\":\"32.00\",\"css\":\"\",\"csszs\":\"\",\"shijian\":\"\",\"addresstest00\":\"中国\",\"addresstest01\":\"\",\"addresstest02\":\"\",\"addresstest04\":\"\",\"addresstest05\":\"\",\"spzt\":\"未提交\",\"eee\":\"\",\"ywms1\":\"\",\"fxkcs1\":\"false\",\"fxkcs2\":\"false\",\"mrzdws\":\"\",\"czkh\":\"\",\"wj001\":\"fil202129F7A1EAtZ4P7\",\"wj002\":\"\",\"wj003\":\"\",\"wj004\":\"\",\"wj005\":\"\",\"wj006\":\"\",\"wj007\":\"\",\"wj008\":\"\",\"wj009\":\"\",\"test11\":\"\",\"czyew\":\"\",\"csurl\":\"\",\"czdxht\":\"\",\"xxbfbcs\":\"\",\"cssz\":\"\",\"customitem38\":\"\",\"customitem39\":\"\",\"customitem40\":\"\",\"dsaddsas36\":\"\",\"yytp\":\"\",\"tp\":\"\",\"csdza\":\"\",\"csdzb\":\"\",\"csdzc\":\"\",\"csdzd\":\"\",\"cedze\":\"\",\"csdzf\":\"\",\"csdzg\":\"\",\"ceshidongtai\":\"\",\"ywjhzxzd\":\"00120215CEAE642rkyNL\",\"csczdx\":\"\",\"czqzkh\":\"\",\"gjdq\":\"\",\"chazhaodaiz\":\"\",\"chazhaowenb\":\"\",\"approve_test\":\"\",\"campaign\":\"\",\"ywjhsm\":\"\",\"jzds\":\"\",\"recordtype\":\"2021EC0F031BF77fOjnX\",\"ddyy\":\"\",\"ddsm\":\"\",\"khxxdz00\":\"中国\",\"khxxdz01\":\"\",\"khxxdz02\":\"\",\"khxxdz04\":\"\",\"khxxdz05\":\"\",\"createbyid\":\"\",\"lastmodifybyid\":\"\",\"fwbgzcs\":\"\",\"wb\":\"\",\"czyh\":\"\",\"test001\":\"\",\"sz0\":\"\",\"bfb\":\"\",\"cbi\":\"\",\"guanlian\":\"\",\"cscz\":\"\",\"bhcxcs\":\"202112224976\",\"cslj\":\"\",\"testda\":\"\",\"lxr\":\"\",\"syr\":\"\",\"lxfs\":\"\",\"lxrrq\":\"\",\"url_name\":\"10000000\",\"id\":\"0022021BD67B74BYSbA2\"}]","marketsea":"false"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': [{'css': '', 'strField17': '未提交', 'jine': '1000.00', 'xxzk': '', 'lookupField2': '', 'createbyid': '', 'ywjhsm': '', 'lxrrq': '', 'id': '0022021BD67B74BYSbA2', 'guanlian': '', 'customitem40': '', 'ownerid': '00520211668D91EOZD3f', 'wj008': '', 'testda': '', 'wj007': '', 'czkh': '', 'wj009': '', 'chazhaodaiz': '', 'wj004': '', 'wj003': '', 'wj006': '', 'wj005': '', 'dsaddsas36': '', 'jingweidula': '', 'czdxht': '', 'strField34': '', 'jingweiduco': '', 'sStrField14': '', 'sStrField13': '', 'sStrField12': '', 'sStrField11': '', 'zhzqzkh': '', 'cedze': '', 'addresstest05': '', 'addresstest04': '', 'csurl': '', 'addresstest02': '', 'addresstest01': '', 'addresstest00': '中国', 'lastmodifybyid': '', 'CCObjectAPI': 'Opportunity', 'spzt': '未提交', 'lxr': '', 'test001': '', 'lxfs': '', 'url_name': '10000000', 'knx': '', 'forecasttype': '忽略', 'jsrq': '', 'lbsaddress': '', 'tp': '', 'xyb': '测试', 'gjdq': '', 'khxxdz02': '', 'errormessage': "\t对象TpStdDatatable2 id='0022021BD67B74BYSbA2' 不存在\n\n\n", 'khmc': '', 'khxxdz01': '', 'khxxdz04': '', 'test11': '', 'khxxdz00': '中国', 'csdzf': '', 'csdzg': '', 'ywjhzxzd': '00120215CEAE642rkyNL', 'ywms1': '', 'khxxdz05': '', 'ddyy': '', 'fxkcs2': 'false', 'fxkcs1': 'false', 'chazhaowenb': '', 'bfb': '', 'yytp': '', 'sz0': '', 'strField42': '', 'csdza': '', 'csdzb': '', 'csdzc': '', 'fwbgzcs': '', 'csdzd': '', 'name': 'A空B不等于满足', 'czyew': '', 'campaign': '', 'jieduan': '', 'shijian': '', 'strField1': '', 'cslj': '', 'approve_test': '', 'wj002': '', 'wj001': 'fil202129F7A1EAtZ4P7', 'eee': '', 'xxbfbcs': '', 'customitem38': '', 'csczdx': '', 'bhcxcs': '202112224976', 'cscz': '', 'longtextField3': '', 'longtextField2': '', 'customitem39': '', 'wb': '', 'longtextField1': '', 'syr': '', 'mrzdws': '', 'csszs': '', 'recordtype': '2021EC0F031BF77fOjnX', 'czqzkh': '', 'sLookupField3': '', 'sLookupField1': '', 'sLookupField2': '', 'czyh': '', 'isSaveSuccess': 'false', 'cbi': '', 'sDateField1': '', 'ceshidongtai': '', 'jzds': '', 'sStrField2': '1000.00', 'sStrField3': '', 'sStrField1': '测试', 'ddsm': '', 'xmys': '32.00', 'cssz': '', 'sStrField8': '', 'sStrField9': '', 'sStrField6': '', 'sStrField7': '中国', 'sStrField4': '', 'sStrField5': '忽略'}], 'requestId': '3ba5fdb7-0325-4543-a84d-29b714bda810', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.3' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_03_ccglq: 商机-业务机会查重过滤</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.3')" >
+        pass</a>
+
+    <div id='div_pt2.3' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.3: 商机-业务机会查重过滤--03
+https://apigw-uat.cloudcc.com/tfstestpdc/api/objectInfo/save
+{"objectApi":"Opportunity","data":"[{\"name\":\"1\",\"ownerid\":\"0052017BE8702F1PIi4j\",\"khmc\":\"\",\"campaign\":\"\",\"gjdq\":\"\",\"zhzqzkh\":\"\",\"jieduan\":\"\",\"knx\":\"\",\"xyb\":\"a\",\"latestcontact\":\"\",\"customitem40\":\"\",\"qq\":\"\",\"css\":\"\",\"bfb\":\"\",\"csszs\":\"\",\"cscz\":\"\",\"czdxht\":\"\",\"jingweidula\":\"\",\"jingweiduco\":\"\",\"fwbgzcs\":\"\",\"wb\":\"\",\"forecasttype\":\"\",\"lxr\":\"\",\"recordtype\":\"2021AECE453349APkQch\",\"syr\":\"\",\"lxfs\":\"\",\"lxrrq\":\"\",\"shijian\":\"\",\"spzt\":\"未提交\",\"eee\":\"\",\"ywms1\":\"\",\"fxkcs1\":\"false\",\"fxkcs2\":\"false\",\"mrzdws\":\"\",\"wj001\":\"\",\"wj002\":\"\",\"czyew\":\"\",\"csurl\":\"\",\"xxbfbcs\":\"\",\"cssz\":\"\",\"customitem38\":\"\",\"customitem39\":\"\",\"dsaddsas36\":\"\",\"yytp\":\"\",\"tp\":\"\",\"csdza\":\"\",\"csdzb\":\"\",\"csdzc\":\"\",\"csdzd\":\"\",\"cedze\":\"\",\"csdzf\":\"\",\"csdzg\":\"\",\"ceshidongtai\":\"\",\"xmys\":\"\",\"ywjhzxzd\":\"0012021F62C347AkSRd6\",\"csczdx\":\"\",\"czqzkh\":\"\",\"chazhaodaiz\":\"\",\"chazhaowenb\":\"\",\"approve_test\":\"\",\"czkh\":\"\",\"jsrq\":\"\",\"test11\":\"\",\"ddyy\":\"\",\"ddsm\":\"\",\"ywjhsm\":\"\",\"jzds\":\"\",\"url_name\":\"1\"}]","marketsea":"false"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.4' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_04_ywjhbj: 商机-业务机会编辑</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.4')" >
+        pass</a>
+
+    <div id='div_pt2.4' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.4: 商机-业务机会编辑--04
+https://apigw-uat.cloudcc.com/tfstestpdc/api/objectInfo/save
+{"objectApi":"Opportunity","data":"[{\"campaign\":\"\",\"name\":\"业务机会编辑+1\",\"ownerid\":\"0052021376913D2lpiAW\",\"khmc\":\"0012021BEC4C5C2t9hi3\",\"zhzqzkh\":\"0042021EDEDDC38CrsPE\",\"jieduan\":\"0%\",\"forecasttype\":\"Pipeline\",\"jsrq\":\"\",\"jine\":\"0.50\",\"ceshidongtai\":\"\",\"xxzk\":\"\",\"xyb\":\"2\",\"cbi\":\"\",\"css\":\"\",\"csszs\":\"\",\"ywjhsm\":\"\",\"jzds\":\"\",\"recordtype\":\"2021075A93B5CEE4pcQb\",\"ddyy\":\"\",\"ddsm\":\"\",\"createbyid\":\"\",\"lastmodifybyid\":\"\",\"fwbgzcs\":\"\",\"wb\":\"\",\"czyh\":\"\",\"test001\":\"\",\"sz0\":\"\",\"bfb\":\"\",\"guanlian\":\"\",\"cscz\":\"\",\"bhcxcs\":\"202112144769\",\"cslj\":\"\",\"testda\":\"\",\"lxr\":\"\",\"syr\":\"\",\"lxfs\":\"\",\"lxrrq\":\"\",\"shijian\":\"\",\"addresstest00\":\"\",\"addresstest01\":\"\",\"addresstest02\":\"\",\"addresstest04\":\"\",\"addresstest05\":\"\",\"spzt\":\"\",\"eee\":\"\",\"ywms1\":\"\",\"fxkcs1\":\"false\",\"fxkcs2\":\"false\",\"mrzdws\":\"\",\"czkh\":\"\",\"wj001\":\"\",\"wj002\":\"\",\"wj003\":\"\",\"wj004\":\"\",\"wj005\":\"\",\"wj006\":\"\",\"wj007\":\"\",\"wj008\":\"\",\"test11\":\"\",\"czyew\":\"\",\"wj009\":\"\",\"csurl\":\"\",\"czdxht\":\"\",\"xxbfbcs\":\"\",\"cssz\":\"\",\"customitem38\":\"\",\"customitem39\":\"\",\"customitem40\":\"\",\"yytp\":\"\",\"dsaddsas36\":\"\",\"tp\":\"\",\"csdza\":\"\",\"csdzb\":\"\",\"csdzc\":\"\",\"csdzd\":\"\",\"cedze\":\"\",\"csdzf\":\"\",\"csdzg\":\"\",\"xmys\":\"\",\"ywjhzxzd\":\"001202166FC8742pQNTD\",\"csczdx\":\"\",\"url_name\":\"业务机会3\",\"id\":\"002202136E2EE8D0qVGW\"}]","marketsea":"false"}
+{"objectApi":"Opportunity","data":"[{\"campaign\":\"\",\"name\":\"业务机会编辑+1\",\"ownerid\":\"0052021376913D2lpiAW\",\"khmc\":\"0012021BEC4C5C2t9hi3\",\"zhzqzkh\":\"0042021EDEDDC38CrsPE\",\"jieduan\":\"0%\",\"forecasttype\":\"Pipeline\",\"jsrq\":\"\",\"jine\":\"0.50\",\"ceshidongtai\":\"\",\"xxzk\":\"\",\"xyb\":\"2\",\"cbi\":\"\",\"css\":\"\",\"csszs\":\"\",\"ywjhsm\":\"\",\"jzds\":\"\",\"recordtype\":\"2021075A93B5CEE4pcQb\",\"ddyy\":\"\",\"ddsm\":\"\",\"createbyid\":\"\",\"lastmodifybyid\":\"\",\"fwbgzcs\":\"\",\"wb\":\"\",\"czyh\":\"\",\"test001\":\"\",\"sz0\":\"\",\"bfb\":\"\",\"guanlian\":\"\",\"cscz\":\"\",\"bhcxcs\":\"202112144769\",\"cslj\":\"\",\"testda\":\"\",\"lxr\":\"\",\"syr\":\"\",\"lxfs\":\"\",\"lxrrq\":\"\",\"shijian\":\"\",\"addresstest00\":\"\",\"addresstest01\":\"\",\"addresstest02\":\"\",\"addresstest04\":\"\",\"addresstest05\":\"\",\"spzt\":\"\",\"eee\":\"\",\"ywms1\":\"\",\"fxkcs1\":\"false\",\"fxkcs2\":\"false\",\"mrzdws\":\"\",\"czkh\":\"\",\"wj001\":\"\",\"wj002\":\"\",\"wj003\":\"\",\"wj004\":\"\",\"wj005\":\"\",\"wj006\":\"\",\"wj007\":\"\",\"wj008\":\"\",\"test11\":\"\",\"czyew\":\"\",\"wj009\":\"\",\"csurl\":\"\",\"czdxht\":\"\",\"xxbfbcs\":\"\",\"cssz\":\"\",\"customitem38\":\"\",\"customitem39\":\"\",\"customitem40\":\"\",\"yytp\":\"\",\"dsaddsas36\":\"\",\"tp\":\"\",\"csdza\":\"\",\"csdzb\":\"\",\"csdzc\":\"\",\"csdzd\":\"\",\"cedze\":\"\",\"csdzf\":\"\",\"csdzg\":\"\",\"xmys\":\"\",\"ywjhzxzd\":\"001202166FC8742pQNTD\",\"csczdx\":\"\",\"url_name\":\"业务机会3\",\"id\":\"0022022131FB171KEmsI\"}]","marketsea":"false"}
+0022022131FB171KEmsI
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.5' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_05_ywjhss: 商机-业务机会搜索</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.5')" >
+        pass</a>
+
+    <div id='div_pt2.5' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.5: 商机-业务机会搜索--05
+https://apigw-uat.cloudcc.com/tfstestpdc/api/view/list/getViewListAjax
+{"obj":"002","viewId":"aec202111E344E92amc3","pageNum":1,"pageSize":50,"sortField":"","sortDir":"","searchKeyWord":"编辑","conditionValues":"","ischangenum":"false","recordnums":50,"tagIds":"","isAllTag":"","campaignid":"false","isallsearch":"false","myself":"false","scrollId":"false","type":"","exactSearchFlag":"0"}
+        
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.6' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_06_ywjhsc: 商机-业务机会删除</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.6')" >
+        pass</a>
+
+    <div id='div_pt2.6' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.6: 商机-业务机会删除--06
+https://apigw-uat.cloudcc.com/tfstestpdc/api/batch/batchDelete
+{"ids":"00220215901930EYiALO,0022021F2B801DDzSrmt","prefix":"002"}
+        
+{"ids":"('0022022131FB171KEmsI', '002202258E16758Lj8Eg')","prefix":"002"}
+        
+0022022131FB171KEmsI
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.7' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_07_xsld: 销售漏斗</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.7')" >
+        pass</a>
+
+    <div id='div_pt2.7' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.7: 销售漏斗--07
+https://apigw-uat.cloudcc.com/tfstestpdc/api/salesFunnel/queryFunnel
+{"enddate":"2021-12-7","startdate":"2021-1-1","recordtypeid":"all","searchKeyWord":"","roleids":"20216A45756928CzQFrS,0052021376913D2lpiAW","ownerid":""}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.8' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_08_xzzj: 小组增加</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.8')" >
+        pass</a>
+
+    <div id='div_pt2.8' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.8: 小组增加--08
+https://apigw-uat.cloudcc.com/tfstestpdc/api/ccchat/usergroup/addUserGroupInfo
+{"name":"小组+999","description":"撒旦飒飒","groupType":"private"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+{'data': {'id': '61e7c29ac9e77c0018bbf489'}, 'requestId': '4d8f3ab5-6155-414d-bde8-4fcb3b621418', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+['61e7c29ac9e77c0018bbf489']
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.9' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_09_xzxg: 小组修改</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.9')" >
+        pass</a>
+
+    <div id='div_pt2.9' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.9: 小组修改--11
+https://apigw-uat.cloudcc.com/tfstestpdc/api/ccchat/usergroup/updateUserGroupInfo
+{"name":"编辑+666","description":"撒旦飒飒","groupType":"private","ownerId":"0052017BE8702F1PIi4j","groupId":"61c1436e52faff0018455890"}
+{"name":"编辑+666","description":"撒旦飒飒","groupType":"private","ownerId":"0052017BE8702F1PIi4j","groupId":"61e7c29ac9e77c0018bbf489"}
+61e7c29ac9e77c0018bbf489
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.10' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_10_xzss: 小组搜索</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.10')" >
+        pass</a>
+
+    <div id='div_pt2.10' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.10: 小组搜索--12
+https://apigw-uat.cloudcc.com/tfstestpdc/api/ccchat/usergroup/queryUserGroups
+{"keyword":"1","groupType":"ug_myGroup","pageSize":"10","pageNum":"1"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.11' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_11_xzsc: 小组删除</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.11')" >
+        pass</a>
+
+    <div id='div_pt2.11' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.11: 小组搜索--11
+https://apigw-uat.cloudcc.com/tfstestpdc/api/ccchat/usergroup/deleteUserGroup
+{"groupId":"61af136ecff47e0018a95776"}
+{"groupId":"61e7c29ac9e77c0018bbf489"}
+61e7c29ac9e77c0018bbf489
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='text text-success'>
+    <td>zhuliucheng_cases.xiangqingye.XiangQingYe</td>
+    <td>16</td>
+    <td>16</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a class="btn btn-xs btn-primary"href="javascript:showClassDetail('c3',16)">Detail</a></td>
+</tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_01_cjywjh: 创建业务机会-01</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.1')" >
+        pass</a>
+
+    <div id='div_pt3.1' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.1: 创建业务机会--01
+https://apigw-uat.cloudcc.com/tfstestpdc/api/objectInfo/save
+{"objectApi":"Opportunity","data":"[{\"name\":\"新建业务机会+001（详情页）\",\"ownerid\":\"0052017BE8702F1PIi4j\",\"khmc\":\"\",\"campaign\":\"\",\"khdh\":\"\",\"zhzqzkh\":\"\",\"gjdq\":\"\",\"knx\":\"\",\"jieduan\":\"\",\"latestcontact\":\"\",\"xyb\":\"1\",\"qq\":\"\",\"customitem40\":\"\",\"bfb\":\"\",\"csszs\":\"\",\"cscz\":\"\",\"czdxht\":\"\",\"jingweidula\":\"\",\"jingweiduco\":\"\",\"fwbgzcs\":\"\",\"wb\":\"\",\"forecasttype\":\"\",\"lxr\":\"\",\"recordtype\":\"2021AECE453349APkQch\",\"syr\":\"\",\"lxfs\":\"\",\"lxrrq\":\"\",\"shijian\":\"\",\"spzt\":\"未提交\",\"eee\":\"\",\"ywms1\":\"\",\"fxkcs2\":\"false\",\"mrzdws\":\"\",\"wj002\":\"\",\"czyew\":\"\",\"csurl\":\"\",\"xxbfbcs\":\"\",\"cssz\":\"\",\"customitem38\":\"\",\"customitem39\":\"\",\"dsaddsas36\":\"\",\"yytp\":\"\",\"tp\":\"\",\"ceshidongtai\":\"\",\"xmys\":\"\",\"ywjhzxzd\":\"00120210E572A6CUo74f\",\"csczdx\":\"\",\"czqzkh\":\"\",\"chazhaodaiz\":\"\",\"chazhaowenb\":\"\",\"approve_test\":\"\",\"czkh\":\"\",\"jsrq\":\"\",\"test11\":\"\",\"ddyy\":\"\",\"ddsm\":\"\",\"ywjhsm\":\"\",\"jzds\":\"\",\"url_name\":\"新建业务机会+001（详情页）\"}]","marketsea":"false"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+['00220229BEC465Ep7TIV']
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.2' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_02_hqkhmc: 获取客户名称</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.2')" >
+        pass</a>
+
+    <div id='div_pt3.2' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.2: 获取客户名称--02
+https://apigw-uat.cloudcc.com/tfstestpdc/api/contactHierarchy/display
+{"opportunityId":"0022021F84B80E5jHQ6T"}
+b'{"opportunityId":"00220229BEC465Ep7TIV"}'
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': {'name': None, 'pathid': None, 'children': []}, 'requestId': '014bf6d1-5956-40c0-a19d-3137e163c34c', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.3' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_03_hqhdjjhzgq: 获取活动-将来或者过去-03</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.3')" >
+        pass</a>
+
+    <div id='div_pt3.3' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.3: 获取活动-将来或者过去--03
+https://apigw-uat.cloudcc.com/tfstestpdc/api/activity/getActivityList
+{"recordId":"0022021F84B80E5jHQ6T","type":"futureAndOverdue","page":1,"pageSize":2}
+b'{"recordId":"00220229BEC465Ep7TIV","type":"futureAndOverdue","page":1,"pageSize":2}'
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': [], 'requestId': '6e925c58-ec96-4e24-beae-c5db58508acf', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.4' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_04_hqhdzgy: 获取活动--这个月-04</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.4')" >
+        pass</a>
+
+    <div id='div_pt3.4' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.4: 获取活动这个月--04
+https://apigw-uat.cloudcc.com/tfstestpdc/api/activity/getActivityList
+{"recordId":"00220229BEC465Ep7TIV","type":"thismonth","page":"","pageSize":""}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': [], 'requestId': 'ee97df43-07e8-48b6-880b-81b2d752f912', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.5' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_05_hqhdsgy: 获取活动-上个月-05</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.5')" >
+        pass</a>
+
+    <div id='div_pt3.5' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.5: 获取活动-上个月--05
+https://apigw-uat.cloudcc.com/tfstestpdc/api/activity/getActivityList
+b'{"recordId":"00220229BEC465Ep7TIV","type":"lastmonth","page":"","pageSize":""}'
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': [], 'requestId': '055932be-5e46-44f4-9359-90f92d1a43b9', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.6' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_06_hqhdgd: 获取活动-更多-06</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.6')" >
+        pass</a>
+
+    <div id='div_pt3.6' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.6: 获取活动-更多--06
+https://apigw-uat.cloudcc.com/tfstestpdc/api/activity/getActivityList
+b'{"recordId":"00220229BEC465Ep7TIV","type":"more","page":"","pageSize":""}'
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': [], 'requestId': 'd0c2f504-b77d-4710-8bdb-3fa1ffb9ca67', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.7' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_07_hqqbcd: 获取全部菜单-07</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.7')" >
+        pass</a>
+
+    <div id='div_pt3.7' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.7: 获取全部菜单--07
+https://apigw-uat.cloudcc.com/tfstestpdc/api/object/getAllObjectList
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': [{'objecttype': '3', 'labelname': '55555', 'id': '202052E41385AD8t4D1I'}, {'objecttype': '3', 'labelname': 'A', 'id': '2020DAD3A00DAA9AgPeI'}, {'objecttype': '3', 'labelname': 'B', 'id': '2020B00A871B0994Cj6f'}, {'objecttype': '3', 'labelname': 'Branch', 'id': '2021B462029ABDFDQxAE'}, {'objecttype': '3', 'labelname': 'C', 'id': '20203C140F8C7A27mhLF'}, {'objecttype': '3', 'labelname': 'D', 'id': '20208EA2CD50DF44s9UM'}, {'objecttype': '3', 'labelname': 'Z定义', 'id': '20210CF505CF81BYhmTH'}, {'objecttype': '3', 'labelname': 'hy', 'id': '20218BDCA50B5F9oWGge'}, {'objecttype': '3', 'labelname': 'order_form', 'id': '2021037D439608E9nT8b'}, {'objecttype': '3', 'labelname': 'ss', 'id': '20209B00797D9F4zFB68'}, {'objecttype': '3', 'labelname': 'test对象DD', 'id': '2021A51A9BAB734tP3vY'}, {'objecttype': '2', 'labelname': '业务机会', 'id': 'opportunity'}, {'objecttype': '2', 'labelname': '业务机会产品', 'id': '2013000001473776JtrA'}, {'objecttype': '2', 'labelname': '业务机会小组', 'id': '201603071422694Oppor'}, {'objecttype': '2', 'labelname': '业务机会阶段历史', 'id': 'jieduanhistory'}, {'objecttype': '2', 'labelname': '个案', 'id': '201100000005024CxOSz'}, {'objecttype': '2', 'labelname': '个案文章', 'id': 'cloudccCaseArticle'}, {'objecttype': '2', 'labelname': '事件1', 'id': 'event'}, {'objecttype': '2', 'labelname': '产品', 'id': '201100000006339JMl6w'}, {'objecttype': '2', 'labelname': '产品功能', 'id': 'wby20210607feature01'}, {'objecttype': '3', 'labelname': '产品管理', 'id': '20214640C5E9F771usSN'}, {'objecttype': '2', 'labelname': '产品请求', 'id': 'productrequestss2021'}, {'objecttype': '2', 'labelname': '产品请求行项目', 'id': 'productlineitems2021'}, {'objecttype': '2', 'labelname': '产品选项', 'id': '20210608cldoption000'}, {'objecttype': '2', 'labelname': '产品选项约束', 'id': '0608optionconstraint'}, {'objecttype': '2', 'labelname': '价格手册', 'id': '2013000001457378u6P9'}, {'objecttype': '2', 'labelname': '价格手册产品条目', 'id': '201300000145876gX8Ej'}, {'objecttype': '2', 'labelname': '任务', 'id': 'task'}, {'objecttype': '2', 'labelname': '任务资源工时', 'id': 'cloudccTaskHour'}, {'objecttype': '2', 'labelname': '企业微信联系人', 'id': '20210901wecomcontact'}, {'objecttype': '3', 'labelname': '休假申请', 'id': '201564941472AC168677'}, {'objecttype': '2', 'labelname': '伙伴帐户', 'id': '20210615partnerfund0'}, {'objecttype': '2', 'labelname': '伙伴帐户充值记录', 'id': 'recrecpartneraccount'}, {'objecttype': '2', 'labelname': '伙伴帐户流水', 'id': '20210615pfstatement0'}, {'objecttype': '3', 'labelname': '会议室信息', 'id': '201892490073AF327E1F'}, {'objecttype': '2', 'labelname': '会话', 'id': 'ConversationSdObject'}, {'objecttype': '2', 'labelname': '供应商', 'id': '20211217cpqvendor001'}, {'objecttype': '3', 'labelname': '候选人', 'id': '2020627AC5858A8D2c47'}, {'objecttype': '3', 'labelname': '全部字段类型', 'id': '202100B23A5B455ytU2Z'}, {'objecttype': '3', 'labelname': '公司信息', 'id': '2021203A481E201QqKTz'}, {'objecttype': '2', 'labelname': '公告', 'id': 'Announcement20210520'}, {'objecttype': '2', 'labelname': '公海池', 'id': 'marketsea'}, {'objecttype': '2', 'labelname': '关联文章', 'id': 'cloudccLinkedArticle'}, {'objecttype': '2', 'labelname': '出差申请单', 'id': '20210107ccsqdstdobj1'}, {'objecttype': '3', 'labelname': '出行', 'id': '2021015F9F28CBCAmBdQ'}, {'objecttype': '3', 'labelname': '出行01', 'id': '202128C0F8DCF1EfDsVw'}, {'objecttype': '2', 'labelname': '分块定价', 'id': '20210604blockprice00'}, {'objecttype': '3', 'labelname': '删除对象标签01', 'id': '2021901B999D49DdM8ok'}, {'objecttype': '2', 'labelname': '发票', 'id': 'invoices'}, {'objecttype': '2', 'labelname': '发票明细', 'id': 'invoicesitems'}, {'objecttype': '3', 'labelname': '合作申请', 'id': '202102BBBA11D04kdYIN'}, {'objecttype': '2', 'labelname': '合同', 'id': '201100000004911Amewy'}, {'objecttype': '3', 'labelname': '合同产品', 'id': '2021C47B319256BgzEv0'}, {'objecttype': '2', 'labelname': '合同行', 'id': '20210604subscription'}, {'objecttype': '2', 'labelname': '合同行项目', 'id': 'ContractLineItemSObj'}, {'objecttype': '2', 'labelname': '同义词', 'id': 'cloudccSynonyms'}, {'objecttype': '3', 'labelname': '员工信息表', 'id': '2021C8563E80530DMZCH'}, {'objecttype': '3', 'labelname': '员工定位', 'id': '2015001000734661z3Dh'}, {'objecttype': '2', 'labelname': '回款', 'id': '20210707proceed'}, {'objecttype': '2', 'labelname': '回款明细', 'id': '20210707procdetail'}, {'objecttype': '2', 'labelname': '子任务', 'id': 'cloudccSubtask'}, {'objecttype': '3', 'labelname': '学生', 'id': '202120E6326356168tva'}, {'objecttype': '3', 'labelname': '实施工程师', 'id': '202024CE303845ATSrRv'}, {'objecttype': '3', 'labelname': '实施申请', 'id': '2020DBA1D4FBE143jFtT'}, {'objecttype': '3', 'labelname': '实施项目', 'id': '202063F2D349CAAr9Aav'}, {'objecttype': '2', 'labelname': '实际工作清单', 'id': 'projectworklist'}, {'objecttype': '2', 'labelname': '客户', 'id': 'account'}, {'objecttype': '2', 'labelname': '客户小组', 'id': 'AccountTeam20210326'}, {'objecttype': '2', 'labelname': '对象重大事件', 'id': 'EntityMilestoneStdob'}, {'objecttype': '3', 'labelname': '工作日报', 'id': '2020C45B1738D6FVuAt3'}, {'objecttype': '2', 'labelname': '工作类型', 'id': 'WorkTypeStdObj012021'}, {'objecttype': '2', 'labelname': '工作规则', 'id': 'WorkRuletdobject2021'}, {'objecttype': '2', 'labelname': '工作订单', 'id': 'WorkOrderstdobj02021'}, {'objecttype': '2', 'labelname': '工作订单行项目', 'id': 'WorkOrderLineItemObj'}, {'objecttype': '3', 'labelname': '差旅报销', 'id': '202181DCB531A17zI16X'}, {'objecttype': '3', 'labelname': '差旅报销明细', 'id': '202159DE3265D81zQHcZ'}, {'objecttype': '2', 'labelname': '已分配服务资源', 'id': 'assignedresource'}, {'objecttype': '2', 'labelname': '市场活动', 'id': '201100000004744Eb42l'}, {'objecttype': '2', 'labelname': '市场活动成员', 'id': '201200000108754gEHnj'}, {'objecttype': '2', 'labelname': '所需产品', 'id': '20210201productrequi'}, {'objecttype': '2', 'labelname': '技能', 'id': 'skill'}, {'objecttype': '2', 'labelname': '技能要求', 'id': 'SkillRequirementobj'}, {'objecttype': '2', 'labelname': '折扣计划', 'id': '531discountschedules'}, {'objecttype': '2', 'labelname': '报价单', 'id': '201100000006130OosPK'}, {'objecttype': '2', 'labelname': '报价单明细', 'id': '2011000000062730EI25'}, {'objecttype': '2', 'labelname': '报价行', 'id': '20210607thequoteline'}, {'objecttype': '2', 'labelname': '报价行组', 'id': '210609quotelinegroup'}, {'objecttype': '2', 'labelname': '搜索性能词', 'id': 'promoted_search_term'}, {'objecttype': '2', 'labelname': '操作时间', 'id': 'operatinghoursstdobj'}, {'objecttype': '2', 'labelname': '收款计划', 'id': '201500000542694NnBk9'}, {'objecttype': '3', 'labelname': '收货地址', 'id': '2021A04C1549B32xzldV'}, {'objecttype': '2', 'labelname': '数据分类', 'id': 'cloudccDataCategory'}, {'objecttype': '2', 'labelname': '数据分类组', 'id': 'dataCategoryGroup'}, {'objecttype': '2', 'labelname': '数据分类选择', 'id': 'dataCategorySelect'}, {'objecttype': '3', 'labelname': '数据导出测试', 'id': '2021436AB983B20S8J1g'}, {'objecttype': '2', 'labelname': '文章历史', 'id': 'cloudcArticleHistory'}, {'objecttype': '3', 'labelname': '新建案例测试1', 'id': '2021719E7D42D38ZCoyj'}, {'objecttype': '3', 'labelname': '新建测试z01', 'id': '20212C309B07A1A4bYF0'}, {'objecttype': '3', 'labelname': '新建测试·', 'id': '2021F2BDE1DE300gtEmX'}, {'objecttype': '2', 'labelname': '日程预约', 'id': 'appointment'}, {'objecttype': '2', 'labelname': '时间条目', 'id': '20210901acatimeentry'}, {'objecttype': '2', 'labelname': '时隙', 'id': 'TimeSlotStandardObje'}, {'objecttype': '3', 'labelname': '明细下属对象', 'id': '2021CE2057DD18BpDtgq'}, {'objecttype': '2', 'labelname': '服务区域', 'id': 'ServiceTerritory2021'}, {'objecttype': '2', 'labelname': '服务区域工作类型', 'id': 'ServiceTerriWorkType'}, {'objecttype': '2', 'labelname': '服务区域成员', 'id': 'TerritoryMember02021'}, {'objecttype': '2', 'labelname': '服务合同', 'id': 'ServiceContractStdOb'}, {'objecttype': '2', 'labelname': '服务报告', 'id': 'servicereport2021obj'}, {'objecttype': '2', 'labelname': '服务报告推送记录', 'id': 'ServReportPushRecord'}, {'objecttype': '2', 'labelname': '服务报告模板', 'id': 'servicereporttempobj'}, {'objecttype': '2', 'labelname': '服务班组', 'id': 'servicecrew'}, {'objecttype': '2', 'labelname': '服务班组成员', 'id': 'servicecrewmember'}, {'objecttype': '2', 'labelname': '服务目标', 'id': 'ServiceGoalStdObject'}, {'objecttype': '2', 'labelname': '服务评价', 'id': '20210207EvaluationSE'}, {'objecttype': '2', 'labelname': '服务资源', 'id': 'serviceresource'}, {'objecttype': '2', 'labelname': '服务资源工作信息', 'id': 'SerResWorkInfo202103'}, {'objecttype': '2', 'labelname': '服务资源工时', 'id': 'srcapacity'}, {'objecttype': '2', 'labelname': '服务资源技能', 'id': 'serviceresourceskill'}, {'objecttype': '2', 'labelname': '服务资源缺勤', 'id': 'srabsence'}, {'objecttype': '2', 'labelname': '服务预约', 'id': 'serviceappointment'}, {'objecttype': '2', 'labelname': '权利', 'id': 'entitlement'}, {'objecttype': '2', 'labelname': '权利过程', 'id': 'entitlementprocess'}, {'objecttype': '3', 'labelname': '查找测试', 'id': '2021CA6EB1EEB81y7wTI'}, {'objecttype': '2', 'labelname': '派工成本', 'id': 'cloudccPlanCost'}, {'objecttype': '3', 'labelname': '测试全局选项值', 'id': '2021E0C3CA6D1CBVDq24'}, {'objecttype': '3', 'labelname': '测试学校', 'id': '2021E5E278D99FDJoxcI'}, {'objecttype': '3', 'labelname': '测试审批触发器', 'id': '2021FB4CE838100oHzdk'}, {'objecttype': '2', 'labelname': '消耗产品', 'id': 'productconsu20210204'}, {'objecttype': '2', 'labelname': '消耗计划', 'id': '0615consumptionsche'}, {'objecttype': '2', 'labelname': '潜在客户', 'id': 'lead'}, {'objecttype': '3', 'labelname': '潜客授权', 'id': '2021234F9FAF229xiGyS'}, {'objecttype': '3', 'labelname': '状态值测试', 'id': '20215ABD746983D6VU2b'}, {'objecttype': '2', 'labelname': '用户区域', 'id': 'UserTerritoryobj2021'}, {'objecttype': '3', 'labelname': '省市县', 'id': '2021085C342D017MI1qK'}, {'objecttype': '2', 'labelname': '知识', 'id': 'cloudcc_knowledge'}, {'objecttype': '2', 'labelname': '知识文章', 'id': 'cloudcc_k_article'}, {'objecttype': '2', 'labelname': '知识文章投票数据', 'id': 'cloudccKAVoteStat'}, {'objecttype': '2', 'labelname': '知识文章浏览数据', 'id': 'cloudccArticleView'}, {'objecttype': '2', 'labelname': '税', 'id': 'wby20211105thetax001'}, {'objecttype': '2', 'labelname': '维护计划', 'id': 'MaintenancePlanStdob'}, {'objecttype': '2', 'labelname': '维护资产', 'id': '20210205Maintenance0'}, {'objecttype': '2', 'labelname': '网站', 'id': 'cloudcc_sys_network'}, {'objecttype': '2', 'labelname': '考勤', 'id': 'attendance'}, {'objecttype': '2', 'labelname': '考勤表', 'id': 'timesheet'}, {'objecttype': '2', 'labelname': '考勤表条目', 'id': 'timesheetentry'}, {'objecttype': '2', 'labelname': '联系人', 'id': 'contact'}, {'objecttype': '2', 'labelname': '联系人角色', 'id': '201603100108754gRole'}, {'objecttype': '2', 'labelname': '联系方式', 'id': 'contacttype'}, {'objecttype': '3', 'labelname': '自定义对象测试', 'id': '2021E3DE4D09C3Faq9ip'}, {'objecttype': '2', 'labelname': '解决方案', 'id': '201100000005145nPh5F'}, {'objecttype': '2', 'labelname': '计划策略', 'id': 'SchedulingPolicySObj'}, {'objecttype': '2', 'labelname': '计划策略工作规则', 'id': 'ScheduPolicyWorkRule'}, {'objecttype': '2', 'labelname': '计划策略目标', 'id': 'SchedulingPolicyGoal'}, {'objecttype': '2', 'labelname': '订单', 'id': '20210525cloudccorder'}, {'objecttype': '3', 'labelname': '订单01', 'id': '2021E337E4DBC38iZxXV'}, {'objecttype': '2', 'labelname': '订单产品', 'id': '2021cloudccorderitem'}, {'objecttype': '2', 'labelname': '订单产品消耗率', 'id': '0611consumptionrate'}, {'objecttype': '2', 'labelname': '订单产品消耗计划', 'id': '0611consumptionsche'}, {'objecttype': '3', 'labelname': '订单明细', 'id': '2021715D47ADF4FZUpvC'}, {'objecttype': '2', 'labelname': '访客', 'id': '20210901acacavisitor'}, {'objecttype': '2', 'labelname': '评价项', 'id': '202102Evaluationltem'}, {'objecttype': '2', 'labelname': '话题', 'id': 'cloudcc_topic'}, {'objecttype': '2', 'labelname': '话题分配', 'id': 'topic_assignment'}, {'objecttype': '2', 'labelname': '语音', 'id': '20210901acacakfvoice'}, {'objecttype': '3', 'labelname': '货后任务', 'id': '2021BAD216A94A3oKNen'}, {'objecttype': '2', 'labelname': '费用', 'id': 'Expensestdobj02021'}, {'objecttype': '2', 'labelname': '费用报表', 'id': '20210209ExpenseObj00'}, {'objecttype': '2', 'labelname': '费用报表条目', 'id': '20210210ReportEntry0'}, {'objecttype': '3', 'labelname': '费用报销', 'id': '20206F320C91AC6VJsbS'}, {'objecttype': '3', 'labelname': '费用报销明细', 'id': '2021BD37D8FDC9FphOZa'}, {'objecttype': '2', 'labelname': '资产', 'id': 'asset'}, {'objecttype': '2', 'labelname': '资产关系', 'id': 'assetrelationship'}, {'objecttype': '2', 'labelname': '资产扫描记录', 'id': 'AssetScanRecord20210'}, {'objecttype': '2', 'labelname': '资源首选项', 'id': 'ResourcePreferenceOb'}, {'objecttype': '2', 'labelname': '轮班', 'id': 'Shiftstdobj02021'}, {'objecttype': '3', 'labelname': '软件包上载测试', 'id': '2021A3165F8D442fpuHt'}, {'objecttype': '2', 'labelname': '返利帐户', 'id': '2021629rebateaccount'}, {'objecttype': '3', 'labelname': '部门', 'id': '202173B244723D6vbTSV'}, {'objecttype': '2', 'labelname': '采购订单', 'id': '2021127purchaseorder'}, {'objecttype': '2', 'labelname': '采购订单产品', 'id': '2021purchasorderitem'}, {'objecttype': '2', 'labelname': '里程碑', 'id': 'cloudccMilestone'}, {'objecttype': '2', 'labelname': '重大事件类型', 'id': 'majoreventtype'}, {'objecttype': '3', 'labelname': '钉钉部门', 'id': '202153C83D38894ZztBg'}, {'objecttype': '3', 'labelname': '销售订单', 'id': '20216616931839Bh9kI0'}, {'objecttype': '3', 'labelname': '销售负责人&amp;提成信息', 'id': '2021A8CF78ED300O0RB5'}, {'objecttype': '2', 'labelname': '问题', 'id': 'cloudcc_problem'}, {'objecttype': '2', 'labelname': '阶梯折扣', 'id': '210603discounttiers'}, {'objecttype': '2', 'labelname': '项目', 'id': 'cloudcc_project'}, {'objecttype': '2', 'labelname': '项目任务', 'id': 'cloudccTask'}, {'objecttype': '3', 'labelname': '项目合同产品明细', 'id': '2021E92BC7CD2485GDe6'}, {'objecttype': '2', 'labelname': '项目成员', 'id': 'cloudccprojectmember'}, {'objecttype': '3', 'labelname': '项目投资立项清单', 'id': '2021F830B264225qLcQI'}, {'objecttype': '2', 'labelname': '项目计划', 'id': 'project_plan'}, {'objecttype': '3', 'labelname': '项目费用', 'id': '2020E0F70584016Oi5TJ'}], 'requestId': 'dac53368-7425-41c7-a25e-bad48d39ac54', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.8' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_08_hqdbcd: 获取顶部菜单-08</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.8')" >
+        pass</a>
+
+    <div id='div_pt3.8' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.8: 获取顶部菜单-08
+https://apigw-uat.cloudcc.com/tfstestpdc/api/objectdetail/getBrief
+{"id":"00220229BEC465Ep7TIV"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': {'button': [{'btn_type': 'detailBtn', 'menubar': None, 'function_code': None, 'iscustom': None, 'name': 'Edit', 'label': '编辑', 'id': 'adc100000001833Yjvf6', 'event': 'URL', 'behavior': 'self', 'url': None}, {'btn_type': 'detailBtn', 'menubar': None, 'function_code': None, 'iscustom': None, 'name': 'Delete', 'label': '删除', 'id': 'adc100000001834XOfYa', 'event': 'URL', 'behavior': 'self', 'url': None}, {'btn_type': 'detailBtn', 'menubar': None, 'function_code': None, 'iscustom': None, 'name': 'Clone', 'label': '复制', 'id': 'adc100000001835LbxFY', 'event': 'URL', 'behavior': 'self', 'url': None}, {'btn_type': 'detailBtn', 'menubar': None, 'function_code': None, 'iscustom': None, 'name': 'Submit', 'label': '提交待审批', 'id': 'adc1000000018372bTIV', 'event': 'URL', 'behavior': 'self', 'url': None}], 'chatterButtons': [], 'heigthLight': [{'fieldName': 'ownerid', 'fieldLabel': '所有人', 'fieldValueId': '0052017BE8702F1PIi4j', 'fieldValue': '空', 'fieldType': 'Y', 'lookupObj': 'user', 'fieldId': 'ffe100000001798xsyOI'}, {'fieldName': 'khmc', 'fieldLabel': '客户名称', 'fieldValue': '', 'fieldType': 'Y', 'lookupObj': 'account', 'fieldId': 'ffe201100003451XKACg'}, {'fieldName': 'jine', 'fieldLabel': '金额', 'fieldValue': '0.00', 'fieldType': 'c', 'lookupObj': '空', 'fieldId': 'ffe201100003456bxpQG'}, {'fieldName': 'jsrq', 'fieldLabel': '预计签约日期', 'fieldValue': '', 'fieldType': 'D', 'lookupObj': '空', 'fieldId': 'ffe201100003459P6VMA'}], 'objapi': 'Opportunity', 'prefix': None, 'objid': 'opportunity', 'activityButtons': [], 'label': '业务机会', 'tabStyle': 'cloudtab12_norm', 'title': [{'fieldName': 'name', 'fieldLabel': '业务机会名称', 'fieldValue': '新建业务机会+001（详情页）'}], 'approvalButtonMap': {'workitemid': '', 'isApproval': False, 'isRecall': False, 'isReassign': False}}, 'requestId': 'be31a25a-3e45-4626-b9eb-5f00cab6fd8c', 'returnCode': '1', 'returnInfo': '获取信息成功', 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.9' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_09_hqxxxx: 获取详细信息-09</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.9')" >
+        pass</a>
+
+    <div id='div_pt3.9' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.9: 获取详细信息-09
+https://apigw-uat.cloudcc.com/tfsuat/api/objectdetail/getDetail
+{"id":"002202229865BD6AehRu","objectApi":"","operation":"DETAIL","recordType":""}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.10' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_10_hqdxxx: 获取对象信息（若干个）-10</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.10')" >
+        pass</a>
+
+    <div id='div_pt3.10' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.10: 获取对象信息（若干个）-10
+https://apigw-uat.cloudcc.com/tfsuat/api/objectdetail/getDetailRelatedItems
+{"recordId":"00220229BEC465Ep7TIV","layoutId":"add2021796C7F79uxD9z","relatedlistId":"aee2021FCE377553dNSI","perPage":10,"attachementType":""}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.11' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_11_hqyjxx: 获取邮件消息-11</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.11')" >
+        pass</a>
+
+    <div id='div_pt3.11' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.11: 获取邮件消息-11
+https://apigw-uat.cloudcc.com/tfstestpdc/api/emailObject/getEmailPageInfo
+{"recordId":"00220229BEC465Ep7TIV"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': {'relatedActiveMailSetting': True, 'emailTrackFlag': False, 'emaillist': [{'createtime': 1642635981000, 'cctype': 'userid', 'ccownerid': '0', 'smtphost': 'smtp.qiye.aliyun.com', 'syncmail': 'chenyy@cloudcc.com', 'smtpport': 465, 'type': 100, 'cloudccid': 5035, 'issmtpssl': True, 'password': 'cyyhhxx1997.', 'imapport': 993, 'imaphost': 'imap.qiye.aliyun.com', 'tenantid': '', 'refreshtoken': '', 'id': 803, 'ccname': '', 'isimapssl': True, 'status': 1}], 'signContent': '自动化测试&lt;span&gt;&lt;/span&gt;'}, 'requestId': '45ba08c8-6025-470f-8912-2f81ec133af4', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.12' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_12_hqspym: 获取审批页面-12--固定id</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.12')" >
+        pass</a>
+
+    <div id='div_pt3.12' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.12: 获取审批页面-12
+https://apigw-uat.cloudcc.com/tfstestpdc/api/approval/getGotoApprovalPreview
+{"relatedId":"0022021D054CDD5KUetS"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': {'workitemid': '', 'isApproval': False, 'isRecall': False, 'allowedReject': 'true', 'isCanSubmit': True, 'list': [{'approvalStatus': 'Unpending', 'approvalName': '业务机会审批', 'stepList': [{'indexNum': 2, 'stepTitle': '审批02', 'stepId': 'sp', 'actorList': [{'assignName': '手动分配', 'status': 'NoStart'}], 'stepStatus': 'NoStart'}, {'indexNum': 1, 'stepTitle': '业务机会审批', 'stepId': 'ywjhsp', 'actorList': [{'assignName': 'testuat系统管理员', 'status': 'NoStart'}], 'stepStatus': 'NoStart'}, {'stepTitle': '提交', 'stepId': 'Started', 'actorList': [{'assignName': '初始提交人', 'status': 'NoStart'}], 'stepStatus': 'NoStart'}]}], 'isReassign': False}, 'requestId': 'ee6df671-53df-40b0-bad9-187fd38008fe', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.13' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_13_hqrwlc: 获取任务流程-13-固定id</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.13')" >
+        pass</a>
+
+    <div id='div_pt3.13' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.13: 获取任务流程-13
+https://apigw-uat.cloudcc.com/tfstestpdc/api/objectdetail/getProgresslayout
+{"id":"0022021D054CDD5KUetS","objectid":"opportunity","value":"4-确定关键决策人"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': None, 'requestId': '4a753ace-511b-4ea3-a78b-d6b5eec4dfbe', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.14' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_14_hqgjzd: 获取关键字段-14</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.14')" >
+        pass</a>
+
+    <div id='div_pt3.14' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.14: 获取关键字段-14
+https://apigw-uat.cloudcc.com/tfstestpdc/api/objectdetail/getProgresslayout
+{"id":"0022021F84B80E5jHQ6T","objectid":"opportunity","value":"20%"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': None, 'requestId': 'd8207293-87dc-4693-b089-5bdbc2b3de53', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.15' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_15_cksfgz: 查看是否关注-15</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.15')" >
+        pass</a>
+
+    <div id='div_pt3.15' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.15: 查看是否关注-15
+https://apigw-uat.cloudcc.com/tfstestpdc/api/ccchat/person/isFollow
+{"id":"0022021F84B80E5jHQ6T"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': {'isFollow': False, 'id': '00220229BEC465Ep7TIV'}, 'requestId': '8a19c117-9fdc-4e05-8da0-df085e10189c', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.16' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_16_hqxglbdxxx: 获取相关列表对象信息-16</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.16')" >
+        pass</a>
+
+    <div id='div_pt3.16' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.16: 取相关列表对象信息-16
+https://apigw-uat.cloudcc.com/tfstestpdc/api/objectdetail/getRelationList
+{"recordId":"0022021F84B80E5jHQ6T"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+{'data': [], 'requestId': '0ad54bf8-2609-484d-80a9-f9d760cb7656', 'returnCode': '1', 'returnInfo': '获取相关列表信息成功', 'result': True, 'stackTrace': None, 'errorSQL': None}
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='text text-success'>
+    <td>zhuliucheng_cases.gean.GeAn</td>
+    <td>4</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a class="btn btn-xs btn-primary"href="javascript:showClassDetail('c4',4)">Detail</a></td>
+</tr>
+
+<tr id='pt4.1' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_02_gazj: 自建增加</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.1')" >
+        pass</a>
+
+    <div id='div_pt4.1' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt4.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt4.1: 个案--自建增加--02
+https://apigw-uat.cloudcc.com/tfstestpdc/api/objectInfo/save
+{"objectApi":"cloudcccase","data":"[{\"ksrqsj\":\"2021-12-24 14:25:19\",\"leixing\":\"\",\"jsrqsj\":\"\",\"galy\":\"\",\"ysj\":\"false\",\"lxrxm\":\"\",\"zhuangtai\":\"新建\",\"emailaddress\":\"\",\"ownerid\":\"0052017BE8702F1PIi4j\",\"khmc\":\"\",\"yxj\":\"\",\"syncmailbox\":\"\",\"csszzd\":\"\",\"lxrdh\":\"\",\"cspfzd\":\"0\",\"qqdclfzr\":\"\",\"wjsdqx\":\"\",\"wbq1\":\"\",\"wjzd1117\":\"\",\"fdffa\":\"\",\"ffg\":\"\",\"wbq2\":\"\",\"ff\":\"\",\"ffafa\":\"\",\"a3\":\"\",\"ffdg\":\"\",\"a4\":\"\",\"tpzd\":\"\",\"a5\":\"0\",\"wbq3\":\"\",\"a7\":\"\",\"wbq4\":\"\",\"a9\":\"false\",\"wbq5\":\"\",\"a8\":\"\",\"wbq6\":\"\",\"a12\":\"\",\"wbq7\":\"\",\"a13\":\"\",\"a6\":\"\",\"a14\":\"\",\"a66\":\"\",\"a15\":\"\",\"a10\":\"\",\"a17\":\"\",\"a11\":\"\",\"a19\":\"\",\"a16\":\"\",\"a18\":\"\",\"a22\":\"\",\"a21la\":\"\",\"a21co\":\"\",\"a23\":\"\",\"a24\":\"\",\"zhuti\":\"新建个案+001\",\"beizhu\":\"\",\"nbzs\":\"\",\"gayy\":\"\",\"clsm\":\"\",\"url_name\":\"新建个案+001\",\"case_assiGNment\":\"false\"}]","marketsea":"false"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+{'data': [{'isSaveSuccess': 'true', 'name': '202201191169', 'id': '008202279CB20D7yOecZ'}], 'requestId': '488ca0f7-0faa-4fd0-bfd4-578fec40d729', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+['008202279CB20D7yOecZ']
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt4.2' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_03_gabj: 个案编辑</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.2')" >
+        pass</a>
+
+    <div id='div_pt4.2' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt4.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt4.2: 个案--自建编辑--03
+https://apigw-uat.cloudcc.com/tfstestpdc/api/objectInfo/save
+{"objectApi":"cloudcccase","data":"[{\"name\":\"202112242072\",\"ksrqsj\":\"2021-12-24 14:25:19\",\"leixing\":\"\",\"jsrqsj\":\"\",\"galy\":\"\",\"ysj\":\"false\",\"lxrxm\":\"\",\"zhuangtai\":\"新建\",\"emailaddress\":\"\",\"ownerid\":\"0052017BE8702F1PIi4j\",\"khmc\":\"\",\"yxj\":\"\",\"syncmailbox\":\"\",\"csszzd\":\"\",\"lxrdh\":\"\",\"cspfzd\":\"0\",\"qqdclfzr\":\"\",\"recordtype\":\"\",\"wjsdqx\":\"\",\"wbq1\":\"\",\"wjzd1117\":\"\",\"fdffa\":\"\",\"ffg\":\"\",\"wbq2\":\"\",\"ff\":\"\",\"a2\":\"20211224333\",\"ffafa\":\"\",\"a3\":\"\",\"ffdg\":\"\",\"a4\":\"\",\"tpzd\":\"\",\"a5\":\"0\",\"wbq3\":\"\",\"a7\":\"\",\"wbq4\":\"\",\"a9\":\"false\",\"wbq5\":\"\",\"a8\":\"\",\"wbq6\":\"\",\"a12\":\"\",\"wbq7\":\"\",\"a13\":\"\",\"a6\":\"\",\"a14\":\"\",\"a66\":\"\",\"a15\":\"\",\"a10\":\"\",\"a17\":\"\",\"a11\":\"\",\"a19\":\"\",\"a16\":\"\",\"a2000\":\"\",\"a2001\":\"\",\"a2002\":\"\",\"a2004\":\"\",\"a2005\":\"\",\"a18\":\"\",\"a22\":\"\",\"a21la\":\"\",\"a21co\":\"\",\"a23\":\"\",\"a24\":\"\",\"zhuti\":\"编辑个案+002\",\"beizhu\":\"\",\"nbzs\":\"\",\"gayy\":\"\",\"clsm\":\"\",\"createbyid\":\"\",\"lastmodifybyid\":\"\",\"url_name\":\"编辑个案+001\",\"case_assiGNment\":\"false\",\"id\":\"008202279CB20D7yOecZ\"}]","marketsea":"false"}
+008202279CB20D7yOecZ
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt4.3' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_04_gass: 个案搜索</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.3')" >
+        pass</a>
+
+    <div id='div_pt4.3' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt4.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt4.3: 个案--搜索--04
+https://apigw-uat.cloudcc.com/tfstestpdc/api/view/list/getViewListAjax
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+搜索到了内容0条
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt4.4' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_05_gasc: 个案删除</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.4')" >
+        pass</a>
+
+    <div id='div_pt4.4' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt4.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt4.4: 个案--删除--05
+https://apigw-uat.cloudcc.com/tfstestpdc/api/objectdetail/delete
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='text text-success'>
+    <td>zhuliucheng_cases.baobiao.BaoBiao</td>
+    <td>8</td>
+    <td>8</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a class="btn btn-xs btn-primary"href="javascript:showClassDetail('c5',8)">Detail</a></td>
+</tr>
+
+<tr id='pt5.1' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_01_xjbbwjj: 新建报表文件夹--响应不产生ID</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.1')" >
+        pass</a>
+
+    <div id='div_pt5.1' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt5.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt5.1: 新建报表文件夹--01---响应没有id
+https://apigw-uat.cloudcc.com/tfstestpdc/api/report/addReportFolder
+{"name":"新建文件夹+001","purview":"0","viewType":"0","folderUser":"","folderReport":""}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+{'data': None, 'requestId': 'a11cd289-7ec6-4cbe-baf4-f6d873a08ed5', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+False
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt5.2' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_02_xjbb: 新建报表</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.2')" >
+        pass</a>
+
+    <div id='div_pt5.2' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt5.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt5.2: 新建报表--02
+https://apigw-uat.cloudcc.com/tfsuat/api/report/saveReport
+{"isshowchart":"false","dataSize":"50","isshowdetail":"false","id":"","mainobjectcolumnid":"ffe1000000017934jB67,ffe100000001795WgaIi,ffe100000001794rft3w,ffe100000001798xsyOI,ffe201100003451XKACg,ffe201100003943eFUc8,ffe201100003456bxpQG,ffe201100003959VdPYZ,ffe201100003956Mg8kH,ffe100000001794rft3w,ffe20200421104ZHLXSJ,ffe201100003448Pdf6g","scope":"user","islightning":"true","reporttypecustomid":"","objecta":"opportunity","objectb":"","optionb":"inner","bfindid":"","objectc":"","optionc":"inner","cfindid":"","objectd":"","optiond":"inner","dfindid":"","totalrecord":"1","datecon":"ffe100000001794rft3w","startdatestr":"2022-01-01","enddatestr":"2022-12-31","datarange":"cury","transversegroupone":"","transversegrouptwo":"","transversegroupthree":"","lengthwaysgroupone":"","lengthwaysgrouptwo":"","transversedatetypeone":"month","transversedatetypetwo":"month","transversedatetypethree":"month","lengthwaysdatetypeone":"month","lengthwaysdatetypetwo":"month","gatherfieldname":"","avgfield":"","maxfield":"","minfield":"","objectRelation":"","conditionVals":"{\"data\":[],\"filter\":\"\",\"relatedObjIdC\":\"\",\"relatedObjIdD\":\"\"}","expression":"","roleid":"","orderFieldApi":"","orderFieldType":"","orderType":"","tbhbexpression":"","description":"","reportfolderid":"0052017BE8702F1PIi4j","dashboardtype":"bar_0","xcon":"totalrecord","summaryway":"sum","xgather":"","ycon":"","unit":"integral","dashboardsortcondition":"value","dashboardsorttype":"desc","max":"","mid1":"","mid2":"","min":"","recordnum":"5","isshowvalue":"true","isshowpercent":"false","name":"新建报表"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+{'data': {'id': '2022FDA034BDEFEDfZtA'}, 'requestId': '7db01c32-bfe6-4393-bca7-6020ce87fea8', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+['2022FDA034BDEFEDfZtA']
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt5.3' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_04_bbdc: 报表导出</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.3')" >
+        pass</a>
+
+    <div id='div_pt5.3' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt5.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt5.3: 报表导出--04
+https://apigw-uat.cloudcc.com/tfstestpdc/api/report/getReportDataByDetail
+{"id":"2021F754821057C9HvMU"}
+2022FDA034BDEFEDfZtA
+{"id":"2022FDA034BDEFEDfZtA"}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt5.4' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_05_bbcmm: 报表重命名</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.4')" >
+        pass</a>
+
+    <div id='div_pt5.4' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt5.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt5.4: 报表重命名-05
+https://apigw-uat.cloudcc.com/tfstestpdc/api/report/updateReportName
+{"description":"报表001","id":"20216925ABD7EA9a2k3N","name":"更换报表名字+001","reportCode":"","reportFolderId":"0052017BE8702F1PIi4j","saveAs":false}
+2022FDA034BDEFEDfZtA
+{"description":"报表001","id":"2022FDA034BDEFEDfZtA","name":"更换报表名字+001","reportCode":"","reportFolderId":"0052017BE8702F1PIi4j","saveAs":false}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+{'data': {'id': '2022FDA034BDEFEDfZtA'}, 'requestId': '57cb4f96-5507-4d0b-95ba-40899edc14ef', 'returnCode': '1', 'returnInfo': None, 'result': True, 'stackTrace': None, 'errorSQL': None}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt5.5' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_08_bbfz: 报表复制</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.5')" >
+        pass</a>
+
+    <div id='div_pt5.5' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt5.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt5.5: 报表复制--08
+https://apigw-uat.cloudcc.com/tfstestpdc/api/report/saveCopyReport
+{"description":"报表001","id":"20216925ABD7EA9a2k3N","name":"更换报表名字+001_副本","reportCode":"","reportFolderId":"baf202185D47B9EIfxwC","saveAs":true}
+2022FDA034BDEFEDfZtA
+{"description":"报表001","id":"2022FDA034BDEFEDfZtA","name":"更换报表名字+001_副本","reportCode":"","reportFolderId":"baf202185D47B9EIfxwC","saveAs":true}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt5.6' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_09_dybb: 订阅报表</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.6')" >
+        pass</a>
+
+    <div id='div_pt5.6' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt5.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt5.6: 订阅报表--09
+https://apigw-uat.cloudcc.com/tfstestpdc/api/subscribe/saveReportSubscribe
+{"id":"","reportid":"20218627B226504M06Yr","runningas_lkid":"0052017BE8702F1PIi4j","sendtotype":"me","attachment":"format","sendtousers":"0052017BE8702F1PIi4j","emailformat":"general","emailoptions":"SummaryAndReport","scheduleId":"","schedulename":"报表订阅-更换报表名字+001_副本-系统管理员1","startdate":"2022-01-12","enddate":"2022-03-31","frequency":"weekly","days":"","executetime":"17","weeknum":"","weeks":"Mon","monthtype":"day","mweek":"","conditions":"[]"}
+{"id":"","reportid":"2022FDA034BDEFEDfZtA","runningas_lkid":"0052017BE8702F1PIi4j","sendtotype":"me","attachment":"format","sendtousers":"0052017BE8702F1PIi4j","emailformat":"general","emailoptions":"SummaryAndReport","scheduleId":"","schedulename":"报表订阅-更换报表名字+001_副本-系统管理员1","startdate":"2022-01-12","enddate":"2022-03-31","frequency":"weekly","days":"","executetime":"17","weeknum":"","weeks":"Mon","monthtype":"day","mweek":"","conditions":"[]"}
+2022FDA034BDEFEDfZtA
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt5.7' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_10_scbb: 删除报表</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.7')" >
+        pass</a>
+
+    <div id='div_pt5.7' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt5.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt5.7: 删除报表--07
+https://apigw-uat.cloudcc.com/tfstestpdc/api/report/deleteReport
+{"id":"202183FE4AC3F93BVgAd","confirmdelete":false}
+{"id":"2022FDA034BDEFEDfZtA","confirmdelete":false}
+2022FDA034BDEFEDfZtA
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt5.8' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>test_11_bbgdddb: 报表文件夹固定到顶部</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.8')" >
+        pass</a>
+
+    <div id='div_pt5.8' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt5.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt5.8: 报表文件夹固定到顶部--11
+https://apigw-uat.cloudcc.com/tfstestpdc/api/report/topFolder
+{"folderId":"baf202185D47B9EIfxwC","isTop":true}
+E:\Python\Python38\lib\site-packages\urllib3\connectionpool.py:1004: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+响应状态码为200
+关键字检查通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    </tbody>
+    <tfoot>
+        <tr id='total_row'>
+            <td>Total</td>
+            <td>51</td>
+            <td class="text text-success">51</td>
+            <td class="text text-danger">0</td>
+            <td class="text text-warning">0</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tfoot>
+</table>
+
+    <div id='ending'>&nbsp;</div>
+</div>
+
+</body>
+</html>
